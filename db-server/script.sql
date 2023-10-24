@@ -1,7 +1,3 @@
-CREATE DATABASE gestione_ticket;
-
-USE gestione_ticket;
-
 CREATE TABLE Users (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50),

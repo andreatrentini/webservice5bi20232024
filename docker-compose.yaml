@@ -1,0 +1,38 @@
+version: '3.9'
+
+secrets:
+  root_db_password:
+    file: root_db_password.txt
+
+networks:
+  ws-sql-net:
+    driver: bridge
+
+services:
+  serv-sql-server:
+    image: mysql:latest
+    container_name: db-server
+    environment:
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/root_db_password
+      MYSQL_DATABASE: gestione_ticket
+    networks:
+      - ws-sql-net
+    ports:
+      - 3350:3306
+    volumes:
+      - ./db-server:/docker-entrypoint-initdb.d
+    secrets:
+      - root_db_password
+  serv-ws-server:
+    image: node:latest
+    container_name: ws-server
+    working_dir: /app
+    networks:
+      - ws-sql-net
+    ports:
+      - 3000:3000
+    tty: true
+    volumes:
+      - ./ws-server:/app
+    secrets:
+      - root_db_password
