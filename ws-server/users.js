@@ -22,6 +22,20 @@ router.get('/', (request, response) => {
     connessione.end(() => { });
 })
 
+router.get('/alldata', (request, response) => {
+    const connessione = mysql.createConnection(parametriConnessioneDB);
+    let querySTR = 'SELECT * FROM Users';
+    connessione.query(querySTR, (error, dati) => {
+        if (!error) {
+            response.json(dati)
+        }
+        else {
+            response.status(500).send(error);
+        }
+    })
+    connessione.end(() => { });
+})
+
 router.get('/:id', (request, response) => {
     let id = request.params.id;
     if (id) {

@@ -3,7 +3,8 @@ const config = {
         host: 'db-server',
         user: 'root',
         password: 'root',
-        database: 'gestione_ticket'
+        database: 'gestione_ticket',
+        multipleStatements : true
     },
     serverPort: 3000,
     secret: 'cisco',

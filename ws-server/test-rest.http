@@ -1,4 +1,15 @@
+POST http://localhost:3000/init
+Content-Type: application/json
+
+{
+    "secret": "cisco"
+}
+###
+
 GET http://localhost:3000/users
+###
+
+GET http://localhost:3000/users/alldata
 ###
 
 DELETE http://localhost:3000/users/1
