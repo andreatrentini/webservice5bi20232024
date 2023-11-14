@@ -53,6 +53,55 @@ service.post('/init', (req, res) => {
     }
 })
 
+service.post('/login', (req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+    if (username && password) {
+        const connessione = mysql.createConnection(parametriConnessioneDB);
+        let querySTR = 'SELECT * FROM Users WHERE username = ?';
+        connessione.query(querySTR, username, (error, dati) => {
+            if (!error) {
+                if (dati.length > 0) {
+                    let user = dati[0];
+                    let passwordHash = user.password;
+                    if (bcrypt.compareSync(password, passwordHash)) {
+                        // login OK
+
+                        // creare un token bearer ed inviarlo al client
+                        // il token deve contenere:
+                        // - username
+                        // - data di creazione
+                        // - data di scadenza (24 ore)
+                        // - ruolo (admin, user)
+
+                        let token = {};
+                        token.username = user.username;
+                        token.data_creazione = new Date();
+                        token.data_scadenza = new Date();
+                        token.data_scadenza.setDate(token.data_creazione.getDate() + 1);
+                        token.ruolo = 'admin';
+                        
+                        
+                    }
+                    else {
+                        res.status(401).send('Unauthorized');
+                    }
+                }
+                else {
+                    res.status(401).send('Unauthorized');
+                }
+            }
+            else {
+                res.status(500).send(error);
+            }
+        })
+        connessione.end(() => { });
+    }
+    else {
+        res.status(401).send('Unauthorized');
+    }
+})
+
 service.use(config.baseUrls.users, usersRouter);
 
 const server = service.listen(config.serverPort, () => {
