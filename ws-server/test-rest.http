@@ -6,7 +6,17 @@ Content-Type: application/json
 }
 ###
 
+POST http://localhost:3000/login HTTP/1.1
+content-type: application/json
+
+{   
+    "username": "admin",
+    "password": "cisco"
+}
+###
+
 GET http://localhost:3000/users
+###
 ###
 
 GET http://localhost:3000/users/alldata
@@ -30,6 +40,48 @@ content-type: application/json
 ###
 
 PUT http://localhost:3000/users/2 HTTP/1.1
+content-type: application/json
+
+{
+    "nome": "Luca",
+    "cognome": "Boschi",
+    "data_nascita": "1968-04-08",
+    "email": "andrea.trentini@marconirovereto.it",
+    "username": "andtrentini",
+    "password": "pippo"
+}
+###
+
+GET http://localhost:3000/users
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE0VDE1OjQzOjAyLjY0M1oiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xNVQxNTo0MzowMi42NDNaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTY5OTk3NjU4Mn0.mc4zy2QIeAgffXl0fw33-xhthvCUVrhZtDBWUH0URrQ
+###
+
+
+GET http://localhost:3000/users/alldata
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE0VDE1OjQzOjAyLjY0M1oiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xNVQxNTo0MzowMi42NDNaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTY5OTk3NjU4Mn0.mc4zy2QIeAgffXl0fw33-xhthvCUVrhZtDBWUH0URrQ
+###
+
+DELETE http://localhost:3000/users/1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE0VDE1OjQzOjAyLjY0M1oiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xNVQxNTo0MzowMi42NDNaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTY5OTk3NjU4Mn0.mc4zy2QIeAgffXl0fw33-xhthvCUVrhZtDBWUH0URrQ
+###
+
+POST http://localhost:3000/users HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE0VDE1OjQzOjAyLjY0M1oiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xNVQxNTo0MzowMi42NDNaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTY5OTk3NjU4Mn0.mc4zy2QIeAgffXl0fw33-xhthvCUVrhZtDBWUH0URrQ
+content-type: application/json
+
+{
+    "nome": "Andrea",
+    "cognome": "Trentini",
+    "data_nascita": "1968-04-08",
+    "email": "andrea.trentini@marconirovereto.it",
+    "username": "andtrentini5",
+    "password": "pippo"
+
+}
+###
+
+PUT http://localhost:3000/users/2 HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE0VDE1OjQzOjAyLjY0M1oiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xNVQxNTo0MzowMi42NDNaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTY5OTk3NjU4Mn0.mc4zy2QIeAgffXl0fw33-xhthvCUVrhZtDBWUH0URrQ
 content-type: application/json
 
 {

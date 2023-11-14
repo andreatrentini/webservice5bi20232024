@@ -11,7 +11,8 @@ const config = {
     saltRounds: 10,
     baseUrls: {
         users: '/users'
-    }
+    },
+    secretPhrase: 'Nel mezzo di cammin di nostra vita mi ritrovai per una selva oscura ché la diritta via era smarrita.'
 }
 
 module.exports = config;

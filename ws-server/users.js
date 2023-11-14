@@ -2,11 +2,14 @@ const express = require('express');
 const mysql = require('mysql2');
 const bcrypt = require('bcrypt');
 
-const config = require('./config.js')
+const config = require('./config.js');
+const auth = require('./auth.js');
 
 const router = express.Router();
 
 const parametriConnessioneDB = config.dbParams;
+
+router.use(auth)
 
 router.get('/', (request, response) => {
     const connessione = mysql.createConnection(parametriConnessioneDB);

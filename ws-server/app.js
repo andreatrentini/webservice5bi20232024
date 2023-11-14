@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const usersRouter = require('./users.js');
+const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
 const config = require('./config.js')
@@ -80,8 +81,10 @@ service.post('/login', (req, res) => {
                         token.data_scadenza = new Date();
                         token.data_scadenza.setDate(token.data_creazione.getDate() + 1);
                         token.ruolo = 'admin';
-                        
-                        
+
+                        let tokenBearer = jwt.sign(token, config.secretPhrase);
+
+                        res.json({token: tokenBearer});                        
                     }
                     else {
                         res.status(401).send('Unauthorized');
