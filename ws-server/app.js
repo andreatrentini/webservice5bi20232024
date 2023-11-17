@@ -3,9 +3,10 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
-const usersRouter = require('./users.js');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const usersRouter = require('./users.js');
+const ticketsRouter = require('./tickets.js');
 
 const config = require('./config.js')
 
@@ -16,6 +17,10 @@ service.use(bodyParser.urlencoded({extended: false}));
 
 const parametriConnessioneDB = config.dbParams;
 
+config.secret = fs.readFileSync('/run/secrets/admin_ws_password', 'utf8');
+config.dbParams.password = fs.readFileSync('/run/secrets/root_db_password', 'utf8');
+config.dbParamsInit.password = config.dbParams.password;
+
 service.get('/', (req, res) => {
     res.sendFile(__dirname + '/help.html');
 });
@@ -25,18 +30,22 @@ service.post('/init', (req, res) => {
     if (secret === config.secret) {
         // 1. carico da file  lo script SQL
         const scriptSQL = fs.readFileSync(__dirname + '/script.sql', 'utf8');
+    
         console.log(scriptSQL);
-        connessione = mysql.createConnection(parametriConnessioneDB);
+        connessione = mysql.createConnection(config.dbParamsInit);
+        console.log(config.dbParamsInit);
         // 2. eseguo lo script SQL
         connessione.query(scriptSQL, (error, dati) => {
-            if (!error) {
-
+            connessione.end(() => { });
+            if (!error) {                
                 connessione = mysql.createConnection(parametriConnessioneDB);
+                console.log(parametriConnessioneDB);
                 let querySTR = 'INSERT INTO Users (username, password) VALUES (?, ?)';
                 let password = bcrypt.hashSync(config.secret, config.saltRounds);
                 let nuovoUtente = ['admin', password];
                 connessione.query(querySTR, nuovoUtente, (error, dati) => {
                     if (!error) {
+                        connessione.end(() => { });
                         res.send('Database inizializzato correttamente');
                     }
                     else {
@@ -61,6 +70,7 @@ service.post('/login', (req, res) => {
         const connessione = mysql.createConnection(parametriConnessioneDB);
         let querySTR = 'SELECT * FROM Users WHERE username = ?';
         connessione.query(querySTR, username, (error, dati) => {
+            connessione.end(() => { });
             if (!error) {
                 if (dati.length > 0) {
                     let user = dati[0];
@@ -84,6 +94,7 @@ service.post('/login', (req, res) => {
 
                         let tokenBearer = jwt.sign(token, config.secretPhrase);
 
+
                         res.json({token: tokenBearer});                        
                     }
                     else {
@@ -98,7 +109,6 @@ service.post('/login', (req, res) => {
                 res.status(500).send(error);
             }
         })
-        connessione.end(() => { });
     }
     else {
         res.status(401).send('Unauthorized');
@@ -106,6 +116,7 @@ service.post('/login', (req, res) => {
 })
 
 service.use(config.baseUrls.users, usersRouter);
+service.use(config.baseUrls.tickets, ticketsRouter);
 
 const server = service.listen(config.serverPort, () => {
     console.log('Server in esecuzione...');

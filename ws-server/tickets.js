@@ -1,6 +1,5 @@
 const express = require('express');
 const mysql = require('mysql2');
-const bcrypt = require('bcrypt');
 
 const config = require('./config.js');
 const auth = require('./auth.js');
@@ -13,21 +12,7 @@ router.use(auth)
 
 router.get('/', (request, response) => {
     const connessione = mysql.createConnection(parametriConnessioneDB);
-    let querySTR = 'SELECT id, nome, cognome, data_nascita, email, username FROM Users';
-    connessione.query(querySTR, (error, dati) => {
-        connessione.end(() => { });
-        if (!error) {
-            response.json(dati)
-        }
-        else {            
-            response.status(500).send(error);
-        }
-    })
-})
-
-router.get('/alldata', (request, response) => {
-    const connessione = mysql.createConnection(parametriConnessioneDB);
-    let querySTR = 'SELECT * FROM Users';
+    let querySTR = 'SELECT * FROM Tickets';
     connessione.query(querySTR, (error, dati) => {
         connessione.end(() => { });
         if (!error) {
@@ -43,7 +28,27 @@ router.get('/:id', (request, response) => {
     let id = request.params.id;
     if (id) {
         const connessione = mysql.createConnection(parametriConnessioneDB);
-        let querySTR = 'SELECT id, nome, cognome, data_nascita, email, username FROM Users WHERE id = ?';
+        let querySTR = 'SELECT * FROM Tickets WHERE id = ?';
+        connessione.query(querySTR, id, (error, dati) => {
+            connessione.end(() => { });
+            if (!error) {
+                response.json(dati)
+            }
+            else {               
+                response.status(500).send(error);
+            }
+        })       
+    }
+    else {
+        response.status(404).send(error);
+    }
+})
+
+router.get('/user/:id', (request, response) => {
+    let id = request.params.id;
+    if (id) {
+        const connessione = mysql.createConnection(parametriConnessioneDB);
+        let querySTR = 'SELECT * FROM Tickets WHERE id_utente = ?';
         connessione.query(querySTR, id, (error, dati) => {
             connessione.end(() => { });
             if (!error) {
@@ -63,7 +68,7 @@ router.delete('/:id', (request, response) => {
     let id = request.params.id;
     if (id) {
         const connessione = mysql.createConnection(parametriConnessioneDB);
-        let querySTR = 'DELETE FROM Users WHERE id = ?';
+        let querySTR = 'DELETE FROM Tickets WHERE id = ?';
         connessione.query(querySTR, id, (error, dati) => {
             connessione.end(() => { });
             if (!error) {
@@ -81,17 +86,13 @@ router.delete('/:id', (request, response) => {
 })
 
 router.post('/', (request, response) => {
-    let userPassword = request.body.password;
-    let saltRounds = bcrypt.genSaltSync(10);
-    let cryptedPassword = bcrypt.hashSync(userPassword, saltRounds);
-    console.log(cryptedPassword);
     
-    let nuovoUtente = [request.body.nome, request.body.cognome, request.body.data_nascita,
-        request.body.email, request.body.username, cryptedPassword];
+    let nuovoTicket = [request.body.titolo, request.body.descrizione, request.body.data_creazione,
+        request.body.data_chiusura, request.body.stato, request.body.id_utente];
         
         const connessione = mysql.createConnection(parametriConnessioneDB);
-        let querySTR = 'INSERT INTO Users (nome, cognome, data_nascita, email, username, password) VALUES (?, ?, ?, ?, ?, ?)';
-        connessione.query(querySTR, nuovoUtente,(error, dati) => {
+        let querySTR = 'INSERT INTO Tickets (titolo, descrizione, data_creazione, data_chiusura, stato, id_utente) VALUES (?, ?, ?, ?, ?, ?)';
+        connessione.query(querySTR, nuovoTicket,(error, dati) => {
             connessione.end(() => { });
             if (!error) {
                 response.json(dati)
@@ -105,12 +106,12 @@ router.post('/', (request, response) => {
 
 router.put('/:id', (request, response) => {
     let id = request.params.id;
-    let nuovoUtente = [request.body.nome, request.body.cognome, request.body.data_nascita,
-        request.body.email, id];
+    let nuovoTicket = [request.body.titolo, request.body.descrizione, request.body.data_creazione,
+        request.body.data_chiusura, request.body.stato, id_utente];
         
         const connessione = mysql.createConnection(parametriConnessioneDB);
-        let querySTR = 'UPDATE Users SET nome = ?, cognome = ?, data_nascita = ?, email = ? WHERE id = ?';
-        connessione.query(querySTR, nuovoUtente,(error, dati) => {
+        let querySTR = 'UPDATE Tickets SET titolo = ?, descrizione = ?, data_creazione = ?, data_chiusura = ?, stato = ?, id_utente = ? WHERE id = ?';
+        connessione.query(querySTR, nuovoTicket,(error, dati) => {
             connessione.end(() => { });
             if (!error) {
                 response.json(dati)
@@ -122,6 +123,3 @@ router.put('/:id', (request, response) => {
     });
 
 module.exports = router;
-
-
-

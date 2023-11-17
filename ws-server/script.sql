@@ -14,4 +14,14 @@ CREATE TABLE Users (
     password VARCHAR(200) NOT NULL
     );
 
+CREATE TABLE Tickets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titolo VARCHAR(100),
+    descrizione VARCHAR(500),
+    data_creazione DATE,
+    data_chiusura DATE,
+    stato VARCHAR(20),
+    id_utente INT,
+    FOREIGN KEY (id_utente) REFERENCES Users(id)
+    );
 

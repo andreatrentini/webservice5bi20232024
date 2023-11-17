@@ -53,20 +53,20 @@ content-type: application/json
 ###
 
 GET http://localhost:3000/users
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE0VDE1OjQzOjAyLjY0M1oiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xNVQxNTo0MzowMi42NDNaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTY5OTk3NjU4Mn0.mc4zy2QIeAgffXl0fw33-xhthvCUVrhZtDBWUH0URrQ
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE3VDEwOjIxOjA1Ljc3NFoiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xOFQxMDoyMTowNS43NzRaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTcwMDIxNjQ2NX0.ZrTHm9mYjBYvBekCqK1rZPK6dY5_2FJtZ089vx3AW7s
 ###
 
 
 GET http://localhost:3000/users/alldata
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE0VDE1OjQzOjAyLjY0M1oiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xNVQxNTo0MzowMi42NDNaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTY5OTk3NjU4Mn0.mc4zy2QIeAgffXl0fw33-xhthvCUVrhZtDBWUH0URrQ
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE3VDA3OjIyOjA2LjAxMVoiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xOFQwNzoyMjowNi4wMTFaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTcwMDIwNTcyNn0.eFK6Ve85oVqd1UVnop3kQcedCwORjfdOgPnTxYPXkOk
 ###
 
-DELETE http://localhost:3000/users/1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE0VDE1OjQzOjAyLjY0M1oiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xNVQxNTo0MzowMi42NDNaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTY5OTk3NjU4Mn0.mc4zy2QIeAgffXl0fw33-xhthvCUVrhZtDBWUH0URrQ
+DELETE http://localhost:3000/users/2
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE3VDA3OjIyOjA2LjAxMVoiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xOFQwNzoyMjowNi4wMTFaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTcwMDIwNTcyNn0.eFK6Ve85oVqd1UVnop3kQcedCwORjfdOgPnTxYPXkOk
 ###
 
 POST http://localhost:3000/users HTTP/1.1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE0VDE1OjQzOjAyLjY0M1oiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xNVQxNTo0MzowMi42NDNaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTY5OTk3NjU4Mn0.mc4zy2QIeAgffXl0fw33-xhthvCUVrhZtDBWUH0URrQ
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE3VDA3OjIyOjA2LjAxMVoiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xOFQwNzoyMjowNi4wMTFaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTcwMDIwNTcyNn0.eFK6Ve85oVqd1UVnop3kQcedCwORjfdOgPnTxYPXkOk
 content-type: application/json
 
 {
@@ -74,14 +74,14 @@ content-type: application/json
     "cognome": "Trentini",
     "data_nascita": "1968-04-08",
     "email": "andrea.trentini@marconirovereto.it",
-    "username": "andtrentini5",
+    "username": "andtrentini",
     "password": "pippo"
 
 }
 ###
 
 PUT http://localhost:3000/users/2 HTTP/1.1
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE0VDE1OjQzOjAyLjY0M1oiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xNVQxNTo0MzowMi42NDNaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTY5OTk3NjU4Mn0.mc4zy2QIeAgffXl0fw33-xhthvCUVrhZtDBWUH0URrQ
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE3VDA3OjIyOjA2LjAxMVoiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xOFQwNzoyMjowNi4wMTFaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTcwMDIwNTcyNn0.eFK6Ve85oVqd1UVnop3kQcedCwORjfdOgPnTxYPXkOk
 content-type: application/json
 
 {
@@ -91,4 +91,47 @@ content-type: application/json
     "email": "andrea.trentini@marconirovereto.it",
     "username": "andtrentini",
     "password": "pippo"
+}
+
+### Tickets
+
+GET http://localhost:3000/tickets
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE3VDA3OjIyOjA2LjAxMVoiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xOFQwNzoyMjowNi4wMTFaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTcwMDIwNTcyNn0.eFK6Ve85oVqd1UVnop3kQcedCwORjfdOgPnTxYPXkOk
+###
+
+
+GET http://localhost:3000/tickets/user/2
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE3VDA3OjIyOjA2LjAxMVoiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xOFQwNzoyMjowNi4wMTFaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTcwMDIwNTcyNn0.eFK6Ve85oVqd1UVnop3kQcedCwORjfdOgPnTxYPXkOk
+###
+
+DELETE http://localhost:3000/tickets/3
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE3VDA3OjIyOjA2LjAxMVoiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xOFQwNzoyMjowNi4wMTFaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTcwMDIwNTcyNn0.eFK6Ve85oVqd1UVnop3kQcedCwORjfdOgPnTxYPXkOk
+###
+
+POST http://localhost:3000/tickets HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE3VDA3OjIyOjA2LjAxMVoiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xOFQwNzoyMjowNi4wMTFaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTcwMDIwNTcyNn0.eFK6Ve85oVqd1UVnop3kQcedCwORjfdOgPnTxYPXkOk
+content-type: application/json
+
+{
+    "titolo": "Ticket",
+    "descrizione": "Descrizione ticket",
+    "data_creazione": "2023-11-2",
+    "data_chiusura": "2023-11-16",
+    "stato": "completato",    
+    "id_utente": 2
+
+}
+###
+
+PUT http://localhost:3000/tickets/1 HTTP/1.1
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZGF0YV9jcmVhemlvbmUiOiIyMDIzLTExLTE3VDA3OjIyOjA2LjAxMVoiLCJkYXRhX3NjYWRlbnphIjoiMjAyMy0xMS0xOFQwNzoyMjowNi4wMTFaIiwicnVvbG8iOiJhZG1pbiIsImlhdCI6MTcwMDIwNTcyNn0.eFK6Ve85oVqd1UVnop3kQcedCwORjfdOgPnTxYPXkOk
+content-type: application/json
+
+{
+    "titolo": "Ticket modificato",
+    "descrizione": "Descrizione ticket",
+    "data_creazione": "2023-11-2",
+    "data_chiusura": "2023-11-16",
+    "stato": "completato",    
+    "id_utente": 2
 }
