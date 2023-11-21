@@ -4,7 +4,9 @@ secrets:
   root_db_password:
     file: root_db_password.txt
   admin_ws_password:
-    file: admin-ws-password.txt
+    file: admin_ws_password.txt
+  init_secret:
+    file: init_secret.txt
 
 networks:
   ws-sql-net:
@@ -20,9 +22,7 @@ services:
     networks:
       - ws-sql-net
     ports:
-      - 3350:3306
-    #volumes:
-    #  - ./db-server:/docker-entrypoint-initdb.d
+      - 3350:3306    
     secrets:
       - root_db_password
   serv-ws-server:
@@ -39,3 +39,4 @@ services:
     secrets:
       - root_db_password
       - admin_ws_password
+      - init_secret

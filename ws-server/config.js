@@ -3,8 +3,7 @@ const config = {
         host: 'db-server',
         user: 'root',
         password: '',
-        database: 'gestione_ticket',
-        multipleStatements : true
+        database: 'gestione_ticket'        
     },
     dbParamsInit: {
         host: 'db-server',
@@ -13,7 +12,7 @@ const config = {
         multipleStatements : true
     },
     serverPort: 3000,
-    secret: 'cisco',
+    secret: '',
     saltRounds: 10,
     baseUrls: {
         users: '/users',
